@@ -36,10 +36,6 @@ function App() {
   
   const handleSubcategorySelect = (subcategory: string | undefined) => {
     setSelectedSubcategory(subcategory);
-    // 当选择子分类时，关闭滚动模式以允许正常浏览
-    if (subcategory) {
-      setIsScrollMode(false);
-    }
   };
   
   const resetFilters = () => {
@@ -48,9 +44,17 @@ function App() {
     setIsScrollMode(true);
   };
 
+  const toggleScrollMode = () => {
+    setIsScrollMode(prev => !prev);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header onResetFilters={resetFilters} />
+      <Header 
+        onResetFilters={resetFilters} 
+        onToggleScrollMode={toggleScrollMode} 
+        isScrollMode={isScrollMode}
+      />
       
       <div className="flex">
         <aside className="hidden md:block h-[calc(100vh-4rem)] sticky top-16">

@@ -1,11 +1,14 @@
 import React from 'react';
-import { GamepadIcon, Search, Menu } from 'lucide-react';
+import { GamepadIcon, Search, Menu, MousePointerClick, MousePointerSquare } from 'lucide-react';
+import { cn } from '../lib/utils';
 
 interface HeaderProps {
   onResetFilters: () => void;
+  onToggleScrollMode: () => void;
+  isScrollMode: boolean;
 }
 
-export function Header({ onResetFilters }: HeaderProps) {
+export function Header({ onResetFilters, onToggleScrollMode, isScrollMode }: HeaderProps) {
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -31,6 +34,28 @@ export function Header({ onResetFilters }: HeaderProps) {
             <a href="#" className="text-gray-700 hover:text-indigo-600">发现</a>
             <a href="#" className="text-gray-700 hover:text-indigo-600">排行榜</a>
             <a href="#" className="text-gray-700 hover:text-indigo-600">关于</a>
+            
+            <button 
+              onClick={onToggleScrollMode}
+              className={cn(
+                "flex items-center gap-1 px-3 py-1 rounded-md transition-colors",
+                isScrollMode 
+                  ? "bg-indigo-100 text-indigo-700" 
+                  : "bg-gray-100 text-gray-700"
+              )}
+            >
+              {isScrollMode ? (
+                <>
+                  <MousePointerSquare className="h-4 w-4" />
+                  <span>滚动浏览</span>
+                </>
+              ) : (
+                <>
+                  <MousePointerClick className="h-4 w-4" />
+                  <span>普通浏览</span>
+                </>
+              )}
+            </button>
           </nav>
 
           <button className="md:hidden">

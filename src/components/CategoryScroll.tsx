@@ -76,10 +76,9 @@ export function CategoryScroll({
     }, 1000); // 滚动动画大约需要1秒
   };
   
-  // 处理滚轮事件
+  // 处理滚轮事件 - 修改此处，允许在选择子分类时也能滚动
   const handleWheel = (e: React.WheelEvent) => {
-    if (selectedSubcategory) return; // 子分类选中时，不拦截滚动
-    
+    // 移除对子分类的检查，允许任何时候都能滚动
     e.preventDefault();
     if (e.deltaY > 0 && activeSection < categories.length - 1) {
       // 向下滚动
@@ -120,7 +119,7 @@ export function CategoryScroll({
         ))}
       </div>
       
-      {/* 分类内容 */}
+      {/* 分类内容 - 修改此部分，显示分类与子分类标签，即使已选择子分类 */}
       {categories.map((category, index) => (
         <div
           key={index}
@@ -134,40 +133,38 @@ export function CategoryScroll({
             {category.name}
           </h2>
           
-          {/* 分类标签与子分类 */}
-          {!selectedSubcategory && (
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
+          {/* 分类标签与子分类 - 始终显示这些标签 */}
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
+            <button
+              onClick={() => handleCategoryClick(category.name, index)}
+              className={cn(
+                "px-6 py-2 rounded-full transition-colors",
+                selectedCategory === category.name && !selectedSubcategory
+                  ? "bg-indigo-600 text-white"
+                  : "bg-indigo-100 text-indigo-700 hover:bg-indigo-200"
+              )}
+            >
+              {category.name}
+            </button>
+            
+            {category.subcategories && category.subcategories.map((sub) => (
               <button
-                onClick={() => handleCategoryClick(category.name, index)}
+                key={sub}
+                onClick={() => {
+                  onCategorySelect(category.name);
+                  onSubcategorySelect(sub);
+                }}
                 className={cn(
                   "px-6 py-2 rounded-full transition-colors",
-                  selectedCategory === category.name
+                  selectedCategory === category.name && selectedSubcategory === sub
                     ? "bg-indigo-600 text-white"
-                    : "bg-indigo-100 text-indigo-700 hover:bg-indigo-200"
+                    : "bg-indigo-50 text-indigo-600 hover:bg-indigo-100"
                 )}
               >
-                {category.name}
+                {sub}
               </button>
-              
-              {category.subcategories && category.subcategories.map((sub) => (
-                <button
-                  key={sub}
-                  onClick={() => {
-                    onCategorySelect(category.name);
-                    onSubcategorySelect(sub);
-                  }}
-                  className={cn(
-                    "px-6 py-2 rounded-full transition-colors",
-                    selectedCategory === category.name && selectedSubcategory === sub
-                      ? "bg-indigo-600 text-white"
-                      : "bg-indigo-50 text-indigo-600 hover:bg-indigo-100"
-                  )}
-                >
-                  {sub}
-                </button>
-              ))}
-            </div>
-          )}
+            ))}
+          </div>
           
           {/* 游戏网格 */}
           <GameGrid 
@@ -175,8 +172,8 @@ export function CategoryScroll({
             subcategory={selectedCategory === category.name ? selectedSubcategory : undefined} 
           />
           
-          {/* 滚动指示器 */}
-          {index < categories.length - 1 && !selectedSubcategory && (
+          {/* 滚动指示器 - 即使选择了子分类也显示 */}
+          {index < categories.length - 1 && (
             <div 
               className="flex flex-col items-center justify-center mt-12 cursor-pointer animate-bounce"
               onClick={() => scrollToSection(index + 1)}
