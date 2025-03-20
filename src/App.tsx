@@ -7,17 +7,18 @@ import { CategoryScroll } from './components/CategoryScroll';
 
 // 从Sidebar组件中提取出来作为共享数据
 const categories = [
+  { name: '有趣网站' },
   {
     name: '游戏设计',
     subcategories: ['游戏引擎', '剧情人物设计']
   },
-  { name: 'RPG' },
-  { name: 'ACT' },
+  { name: '角色扮演游戏' },
+  { name: '动作游戏' },
   {
-    name: 'SLG',
+    name: '策略游戏',
     subcategories: ['沙盒模拟']
   },
-  { name: 'AVG' },
+  { name: '冒险游戏' },
   { name: '互动小说' },
   { name: '图画游戏' },
   { name: '解密游戏' },

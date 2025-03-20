@@ -117,5 +117,159 @@ export const games: Game[] = [
     description: '谷歌AI识别涂鸦的互动游戏',
     category: '图画游戏',
     icon: 'https://storage.googleapis.com/gweb-uniblog-publish-prod/images/quickdraw_icon.max-500x500.png'
-  }
+  },
+
+    {
+      title: 'Hidden Door',
+      url: 'https://www.hiddendoor.co/',
+      description: '一个角色扮演游戏平台，支持用户创建和参与角色扮演冒险。',
+      highlights: '界面友好，角色定制性强，社区活跃。',
+      category: '角色扮演游戏',
+      subcategory: ''
+    },
+    {
+      title: 'Infinite Craft',
+      url: 'https://neal.fun/infinite-craft/',
+      description: '一个无限创意的制作游戏，玩家可以从基本元素开始，创造出各种物品。',
+      highlights: '创意无限，玩法简单，适合放松。',
+      category: '有趣网站',
+      subcategory: ''
+    },
+    {
+      title: 'Hexagen World',
+      url: 'https://www.hexagen.world/',
+      description: '一个基于六边形的策略游戏世界，玩家可以探索和建设。',
+      highlights: '独特的六边形设计，策略性强，视觉效果出色。',
+      category: '有趣网站',
+      subcategory: ''
+    },
+    {
+      title: 'Ifable AI',
+      url: 'https://www.ifable.ai/start',
+      description: '一个AI驱动的游戏设计平台，支持开发者快速构建游戏原型。',
+      highlights: 'AI辅助设计，快速原型开发，适合独立开发者。',
+      category: '游戏设计',
+      subcategory: '游戏引擎'
+    },
+    {
+      title: 'Playroom',
+      url: 'https://joinplayroom.com/',
+      description: '一个多人在线游戏平台，支持各种类型的游戏和社交互动。',
+      highlights: '多样化的游戏选择，实时多人互动，社区功能丰富。',
+      category: '有趣网站',
+      subcategory: ''
+    },
+    {
+      title: 'Human or Not',
+      url: 'https://humanornot.so/',
+      description: '一个互动游戏，玩家需要判断对话者是人类还是AI。',
+      highlights: '独特的游戏概念，考验玩家的洞察力，界面简洁。',
+      category: '解密游戏',
+      subcategory: ''
+    },
+    {
+      title: 'ChessGPT',
+      url: 'https://chessgpt.atomic14.com/',
+      description: '一个结合了AI技术的国际象棋游戏，支持与AI对战和学习。',
+      highlights: 'AI对手智能，适合不同水平的玩家，界面直观。',
+      category: '策略游戏',
+      subcategory: ''
+    },
+    {
+      title: 'AI2U With You Til The End',
+      url: 'https://store.steampowered.com/app/2880730/AI2U_With_You_Til_The_End/',
+      description: '一个叙事驱动的冒险游戏，玩家与AI伙伴共同探索故事。',
+      highlights: '情感丰富的剧情，精美的视觉效果，互动性强。',
+      category: '冒险游戏',
+      subcategory: ''
+    },
+    {
+      title: 'The Simulation',
+      url: 'https://ww1.thesimulation.co/?usid=16&utid=37464761826',
+      description: '一个沙盒模拟游戏，玩家可以创建和管理自己的虚拟世界。',
+      highlights: '高度自由的玩法，丰富的模拟元素，适合策略爱好者。',
+      category: '策略游戏',
+      subcategory: '沙盒模拟'
+    },
+    {
+      title: 'Oasis',
+      url: 'https://oasis.decart.ai/welcome',
+      description: '一个AI驱动的创意平台，支持用户生成艺术和设计。',
+      highlights: 'AI生成艺术，界面友好，创意无限。',
+      category: '游戏设计',
+      subcategory: '剧情人物设计'
+    },
+    {
+      title: 'WebSim',
+      url: 'https://websim.ai/',
+      description: '一个基于Web的模拟平台，支持用户创建和分享模拟场景。',
+      highlights: '易于使用，社区分享功能，适合教育和娱乐。',
+      category: '策略游戏',
+      subcategory: '沙盒模拟'
+    },
+    {
+      title: 'Human or AI',
+      url: 'https://humanizeai.com/human-or-ai/',
+      description: '一个互动体验，玩家需要判断文本是人类还是AI生成的。',
+      highlights: '简单有趣，适合快速游戏，界面简洁。',
+      category: '解密游戏',
+      subcategory: ''
+    },
+    {
+      title: 'Charmed AI',
+      url: 'https://charmed.ai/',
+      description: '一个AI驱动的角色设计工具，支持游戏开发者快速创建角色。',
+      highlights: 'AI辅助设计，角色多样性，适合快速原型。',
+      category: '游戏设计',
+      subcategory: '剧情人物设计'
+    },
+    {
+      title: 'Genie 2 by DeepMind',
+      url: 'https://deepmind.google/discover/blog/genie-2-a-large-scale-foundation-world-model/',
+      description: 'DeepMind的博客文章，介绍了一个大规模的基础世界模型。',
+      highlights: '尖端AI研究，潜在的游戏开发应用，技术深度。',
+      category: '游戏设计',
+      subcategory: '游戏引擎'
+    },
+    {
+      title: 'My Adventures AI',
+      url: 'https://myadventures.ai/',
+      description: '一个AI生成的冒险游戏平台，玩家可以体验个性化的冒险故事。',
+      highlights: 'AI驱动的故事情节，高度互动，适合冒险爱好者。',
+      category: '冒险游戏',
+      subcategory: ''
+    },
+    {
+      title: 'Endless VN',
+      url: 'https://endlessvn.io/',
+      description: '一个无限视觉小说的平台，玩家可以探索无尽的故事线。',
+      highlights: '无限的故事可能性，视觉小说风格，界面吸引人。',
+      category: '互动小说',
+      subcategory: ''
+    },
+    {
+      title: 'Smarter Than GPT',
+      url: 'https://smarterthangpt.com/',
+      description: '一个AI工具平台，提供比GPT更智能的解决方案。',
+      highlights: '先进的AI技术，适合开发者，界面专业。',
+      category: '游戏设计',
+      subcategory: '游戏引擎'
+    },
+    {
+      title: 'Ready Player Me',
+      url: 'https://readyplayer.me/',
+      description: '一个虚拟角色创建平台，支持用户为游戏和应用创建头像。',
+      highlights: '高度定制的角色，跨平台兼容，易于集成。',
+      category: '游戏设计',
+      subcategory: '剧情人物设计'
+    },
+    {
+      title: 'V3 RPG',
+      url: 'https://landing.v3rpg.com/',
+      description: '一个角色扮演游戏平台，支持玩家创建和参与RPG冒险。',
+      highlights: '丰富的角色定制，社区驱动的内容，界面友好。',
+      category: '角色扮演游戏',
+      subcategory: ''
+    }
+
 ];
