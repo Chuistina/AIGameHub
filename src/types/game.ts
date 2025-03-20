@@ -6,6 +6,7 @@ export interface Game {
   features?: string[];
   category: string;
   subcategory?: string;
+  icon?: string;
 }
 
 export const games: Game[] = [
@@ -15,7 +16,8 @@ export const games: Game[] = [
     description: '谷歌推出的AI游戏引擎，能实时生成可玩的《DOOM》游戏画面，帧率达20帧/秒，画面逼真到让60%的玩家难以分辨真假。',
     highlights: '显示了AI取代传统编程的潜力，可能改变游戏开发行业。',
     category: '游戏设计',
-    subcategory: '游戏引擎'
+    subcategory: '游戏引擎',
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png'
   },
   {
     title: 'Scenario',
@@ -99,18 +101,21 @@ export const games: Game[] = [
     title: 'AI Dungeon',
     url: 'https://play.aidungeon.com/',
     description: 'AI驱动的文字冒险游戏',
-    category: '互动小说'
+    category: '互动小说',
+    icon: 'https://play-lh.googleusercontent.com/9zvNJHOoq4JhGngfEzNOr5HrCXvvVWgGrjJ_Zj7GNxGkJkAYZBbX3gFT0GtUgx4jRA=w240-h480-rw'
   },
   {
     title: 'Emooji',
     url: 'https://www.emooji.lol/',
     description: 'AI驱动的图画游戏平台',
-    category: '图画游戏'
+    category: '图画游戏',
+    icon: 'https://www.emooji.lol/favicon.ico'
   },
   {
     title: 'Quick Draw',
     url: 'https://quickdraw.withgoogle.com/',
     description: '谷歌AI识别涂鸦的互动游戏',
-    category: '图画游戏'
+    category: '图画游戏',
+    icon: 'https://storage.googleapis.com/gweb-uniblog-publish-prod/images/quickdraw_icon.max-500x500.png'
   }
 ];

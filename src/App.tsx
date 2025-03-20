@@ -27,7 +27,6 @@ const categories = [
 function App() {
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>();
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | undefined>();
-  const [isScrollMode, setIsScrollMode] = useState(true);
   
   const handleCategorySelect = (category: string) => {
     setSelectedCategory(category);
@@ -41,19 +40,12 @@ function App() {
   const resetFilters = () => {
     setSelectedCategory(undefined);
     setSelectedSubcategory(undefined);
-    setIsScrollMode(true);
-  };
-
-  const toggleScrollMode = () => {
-    setIsScrollMode(prev => !prev);
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Header 
-        onResetFilters={resetFilters} 
-        onToggleScrollMode={toggleScrollMode} 
-        isScrollMode={isScrollMode}
+        onResetFilters={resetFilters}
       />
       
       <div className="flex">
@@ -68,23 +60,13 @@ function App() {
         </aside>
         
         <main className="flex-1">
-          {isScrollMode ? (
-            <CategoryScroll 
-              categories={categories}
-              selectedCategory={selectedCategory}
-              selectedSubcategory={selectedSubcategory}
-              onCategorySelect={handleCategorySelect}
-              onSubcategorySelect={handleSubcategorySelect}
-            />
-          ) : (
-            <>
-              {!selectedCategory && <Hero />}
-              <GameGrid 
-                category={selectedCategory}
-                subcategory={selectedSubcategory}
-              />
-            </>
-          )}
+          <CategoryScroll 
+            categories={categories}
+            selectedCategory={selectedCategory}
+            selectedSubcategory={selectedSubcategory}
+            onCategorySelect={handleCategorySelect}
+            onSubcategorySelect={handleSubcategorySelect}
+          />
         </main>
       </div>
     </div>

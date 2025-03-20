@@ -3,6 +3,11 @@ import { ChevronDown } from 'lucide-react';
 import { GameGrid } from './GameGrid';
 import { cn } from '../lib/utils';
 
+interface Category {
+  name: string;
+  subcategories?: string[];
+}
+
 interface CategoryScrollProps {
   categories: Category[];
   selectedCategory?: string;
@@ -28,6 +33,16 @@ export function CategoryScroll({
     sectionRefs.current = sectionRefs.current.slice(0, categories.length);
   }, [categories]);
   
+  // 当选择类别变化时，滚动到对应的类别
+  useEffect(() => {
+    if (selectedCategory) {
+      const categoryIndex = categories.findIndex(cat => cat.name === selectedCategory);
+      if (categoryIndex !== -1 && !isScrolling) {
+        scrollToSection(categoryIndex);
+      }
+    }
+  }, [selectedCategory]);
+  
   // 滚动监听设置
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current;
@@ -51,12 +66,21 @@ export function CategoryScroll({
       
       if (currentSectionIndex !== -1) {
         setActiveSection(currentSectionIndex);
+        
+        // 如果滚动导致活动部分变化，更新所选类别（但不触发新的滚动）
+        if (categories[currentSectionIndex] && categories[currentSectionIndex].name !== selectedCategory) {
+          // 使用setTimeout避免在滚动处理程序中更新状态
+          setTimeout(() => {
+            onCategorySelect(categories[currentSectionIndex].name);
+            onSubcategorySelect(undefined);
+          }, 0);
+        }
       }
     };
     
     scrollContainer.addEventListener('scroll', handleScroll);
     return () => scrollContainer.removeEventListener('scroll', handleScroll);
-  }, [isScrolling]);
+  }, [isScrolling, categories, selectedCategory, onCategorySelect, onSubcategorySelect]);
   
   // 处理滚动到特定部分
   const scrollToSection = (index: number) => {
@@ -76,9 +100,8 @@ export function CategoryScroll({
     }, 1000); // 滚动动画大约需要1秒
   };
   
-  // 处理滚轮事件 - 修改此处，允许在选择子分类时也能滚动
+  // 处理滚轮事件
   const handleWheel = (e: React.WheelEvent) => {
-    // 移除对子分类的检查，允许任何时候都能滚动
     e.preventDefault();
     if (e.deltaY > 0 && activeSection < categories.length - 1) {
       // 向下滚动
@@ -119,7 +142,7 @@ export function CategoryScroll({
         ))}
       </div>
       
-      {/* 分类内容 - 修改此部分，显示分类与子分类标签，即使已选择子分类 */}
+      {/* 分类内容 */}
       {categories.map((category, index) => (
         <div
           key={index}
@@ -133,7 +156,7 @@ export function CategoryScroll({
             {category.name}
           </h2>
           
-          {/* 分类标签与子分类 - 始终显示这些标签 */}
+          {/* 分类标签与子分类 */}
           <div className="flex flex-wrap justify-center gap-4 mb-8">
             <button
               onClick={() => handleCategoryClick(category.name, index)}
@@ -172,7 +195,7 @@ export function CategoryScroll({
             subcategory={selectedCategory === category.name ? selectedSubcategory : undefined} 
           />
           
-          {/* 滚动指示器 - 即使选择了子分类也显示 */}
+          {/* 滚动指示器 */}
           {index < categories.length - 1 && (
             <div 
               className="flex flex-col items-center justify-center mt-12 cursor-pointer animate-bounce"
