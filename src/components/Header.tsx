@@ -1,12 +1,16 @@
 import React from 'react';
 import { GamepadIcon, Search, Menu } from 'lucide-react';
 
-export function Header() {
+interface HeaderProps {
+  onResetFilters: () => void;
+}
+
+export function Header({ onResetFilters }: HeaderProps) {
   return (
-    <header className="bg-white shadow-sm">
+    <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="flex items-center">
+          <div className="flex items-center cursor-pointer" onClick={onResetFilters}>
             <GamepadIcon className="h-8 w-8 text-indigo-600" />
             <span className="ml-2 text-xl font-bold text-gray-900">MoChun游戏</span>
           </div>
@@ -23,7 +27,7 @@ export function Header() {
           </div>
 
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-gray-700 hover:text-indigo-600">首页</a>
+            <a href="#" className="text-gray-700 hover:text-indigo-600" onClick={onResetFilters}>首页</a>
             <a href="#" className="text-gray-700 hover:text-indigo-600">发现</a>
             <a href="#" className="text-gray-700 hover:text-indigo-600">排行榜</a>
             <a href="#" className="text-gray-700 hover:text-indigo-600">关于</a>

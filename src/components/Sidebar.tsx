@@ -7,57 +7,38 @@ interface Category {
   subcategories?: string[];
 }
 
-const categories: Category[] = [
-  {
-    name: '游戏设计',
-    subcategories: ['游戏引擎', '剧情人物设计']
-  },
-  { name: 'RPG' },
-  { name: 'ACT' },
-  {
-    name: 'SLG',
-    subcategories: ['沙盒模拟']
-  },
-  { name: 'AVG' },
-  { name: '互动小说' },
-  { name: '图画游戏' },
-  { name: '解密游戏' },
-  { name: '音乐游戏' }
-];
-
 interface SidebarProps {
+  categories: Category[];
   onCategorySelect: (category: string) => void;
   onSubcategorySelect: (subcategory: string | undefined) => void;
+  activeCategory?: string;
+  activeSubcategory?: string;
 }
 
-export function Sidebar({ onCategorySelect, onSubcategorySelect }: SidebarProps) {
+export function Sidebar({ 
+  categories, 
+  onCategorySelect, 
+  onSubcategorySelect, 
+  activeCategory, 
+  activeSubcategory 
+}: SidebarProps) {
   const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
-  const [activeCategory, setActiveCategory] = useState<string>();
-  const [activeSubcategory, setActiveSubcategory] = useState<string>();
-
-  const toggleCategory = (category: string) => {
-    setExpandedCategories(prev =>
-      prev.includes(category)
-        ? prev.filter(c => c !== category)
-        : [...prev, category]
-    );
-  };
 
   const handleCategoryClick = (category: Category) => {
-    setActiveCategory(category.name);
-    setActiveSubcategory(undefined);
     onCategorySelect(category.name);
     onSubcategorySelect(undefined);
     
     if (category.subcategories) {
-      toggleCategory(category.name);
+      setExpandedCategories(prev => 
+        prev.includes(category.name)
+          ? prev.filter(cat => cat !== category.name)
+          : [...prev, category.name]
+      );
     }
   };
 
-  const handleSubcategoryClick = (category: string, subcategory: string) => {
-    setActiveCategory(category);
-    setActiveSubcategory(subcategory);
-    onCategorySelect(category);
+  const handleSubcategoryClick = (categoryName: string, subcategory: string) => {
+    onCategorySelect(categoryName);
     onSubcategorySelect(subcategory);
   };
 
