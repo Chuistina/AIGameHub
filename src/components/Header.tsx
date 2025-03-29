@@ -1,12 +1,14 @@
-import React from 'react';
-import { GamepadIcon, Search, Menu } from 'lucide-react';
-import { cn } from '../lib/utils';
+import React, { useState } from 'react';
+import { GamepadIcon, Search, Menu, Globe } from 'lucide-react';
+import { TranslationService } from './TranslationService';
 
 interface HeaderProps {
   onResetFilters: () => void;
 }
 
 export function Header({ onResetFilters }: HeaderProps) {
+  const [isTranslationOpen, setIsTranslationOpen] = useState(false);
+
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -31,7 +33,13 @@ export function Header({ onResetFilters }: HeaderProps) {
             <a href="#" className="text-gray-700 hover:text-indigo-600" onClick={onResetFilters}>首页</a>
             <a href="#" className="text-gray-700 hover:text-indigo-600">发现</a>
             <a href="#" className="text-gray-700 hover:text-indigo-600">排行榜</a>
-            <a href="#" className="text-gray-700 hover:text-indigo-600">关于</a>
+            <button 
+              className="text-gray-700 hover:text-indigo-600 flex items-center"
+              onClick={() => setIsTranslationOpen(true)}
+            >
+              <Globe className="mr-1 h-4 w-4" />
+              翻译
+            </button>
           </nav>
 
           <button className="md:hidden">
@@ -39,6 +47,11 @@ export function Header({ onResetFilters }: HeaderProps) {
           </button>
         </div>
       </div>
+      
+      <TranslationService 
+        isOpen={isTranslationOpen}
+        onClose={() => setIsTranslationOpen(false)}
+      />
     </header>
   );
 }
